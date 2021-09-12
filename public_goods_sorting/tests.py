@@ -17,7 +17,9 @@ class PlayerBot(Bot):
             yield Submission(pages.ManualAdvance4, timeout_happened=True, check_html=False)
             yield (pages.IntroductionPart2)
             yield Submission(pages.ManualAdvance5, timeout_happened=True, check_html=False)
-            yield Submission(pages.Ranking, dict(list_ID_rank="3,2,1,5,4,7,8,9,10,11,15,16,6,12,14,13,17,18"), check_html=False)
+            yield Submission(pages.Ranking, dict(
+                list_ID_rank="3,2,1,5,4,7,8,9,10,11,15,16,6,12,14,13,17,18"),
+                             check_html=False)
             yield (pages.MechanismDisplay)
             yield (pages.InfoNewMembers)
 

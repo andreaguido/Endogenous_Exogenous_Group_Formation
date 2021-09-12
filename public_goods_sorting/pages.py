@@ -34,7 +34,9 @@ class Contribute(Page):
     def before_next_page(self):
         if self.timeout_happened:
             self.player.contribution = random.randint(0,Constants.endowment)
-
+            self.player.timeout_contribution = 1
+        else:
+            self.player.timeout_contribution = 0
 
 
 class ManualAdvance1(Page):
@@ -86,6 +88,16 @@ class Ranking(Page):
     """Here players define the ranking"""
     form_model = 'player'
     form_fields = ['list_ID_rank', 'displayed_ID']
+
+    def before_next_page(self):
+        if self.timeout_happened:
+            list_ID_rank_temp = list(range(1,Constants.num_others_per_group+1))
+            self.player.list_ID_rank = ','.join(map(str,list_ID_rank_temp))
+            self.player.displayed_ID = self.player.list_ID_rank
+            self.player.timeout_ranking = 1
+        else:
+            self.player.timeout_ranking = 0
+
 
     def vars_for_template(self):
         # reshuffle

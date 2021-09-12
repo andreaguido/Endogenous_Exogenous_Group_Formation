@@ -275,6 +275,9 @@ class Player(BasePlayer):
     )
     list_ID_rank = models.CharField()
     displayed_ID = models.CharField()
+    # add timeouts
+    timeout_ranking = models.IntegerField()
+    timeout_contribution = models.IntegerField()
 #    rank_sum = models.IntegerField()
     age = models.IntegerField()
 
