@@ -1,0 +1,173 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+{% load staticfiles %}
+
+{% block title %}
+    Ranking stage
+{% endblock %}
+
+{% block script %}
+<script src="{% static "js/jquery-3.4.1.js" %}"></script>
+<script src="{% static "js/rango-jquery.js" %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<style>
+    .table-condensed tr { line-height: 14px; }
+</style>
+{% endblock %}
+
+
+{% block content %}
+<script>
+// DEFINE VARS USED IN SCRIPTS BELOW
+var nplayers = {{ nplayers }} -1; // CHANGE THIS DYNAMICALLY WITH DJANGO (put others in subsession)
+//var list_ranking = [];
+//var list_target_player = [];
+
+// DEFINE FUNCTION TO CREATE TEXTBOXES DYNAMICALLY WITH NAMES
+$(document).ready(function() {
+
+  for (i = 1; i <= nplayers; i++) {
+    $("#tablewithranking").append("<tr height = '40'><td><form><input type='number' id ='rank" + i + "'/></form></td></tr>");
+  }
+})
+
+// DEFINE FUNCTIONS TO create range ARRAYS AND COMPARE TWO ARRAYS
+function arraysEqual(a, b) {
+  if (a === b) return true;
+  if (a == null || b == null) return false;
+  if (a.length != b.length) return false;
+
+  // If you don't care about the order of the elements inside
+  // the array, you should sort both arrays here.
+  // Please note that calling sort on an array will modify that array.
+  // you might want to clone your array first.
+
+  for (var i = 0; i < a.length; ++i) {
+    //alert(a[i]);
+    //alert(b[i]);
+    if (a[i] != b[i]) return false;
+  }
+  return true;
+}
+function range(size, startAt=1) {
+    return [...Array(size).keys()].map(i => i + startAt);
+}
+
+// Main function: on click, get the input (ranking) and check its validity
+$(document).ready(function(){
+  $("#btnOK").click(function(){
+  // STEP 1. define variables
+    list_ID_rank = []; // main variable to pass to django
+    list_target_player = []; // another var to pass to django (i.e., displayed IDs in the table)
+
+  // STEP 2. get input (ranking)
+  for (j = 1; j <= nplayers; j++) {
+    target_player = document.getElementById("playerID" + j).textContent; // list of ids
+    rank = document.getElementById("rank" + j).value; // list of rankings
+    list_temp = []; // temp list
+    list_temp_id = []; // temp list
+    list_temp.push(rank); //here before : target_player, next to rank
+    list_temp_id.push(target_player);
+    // NOT USED HERE list_join = list_temp.join(':');
+    list_ID_rank.push(list_temp); // here before list_join in place of list_temp
+    list_target_player.push(list_temp_id);
+
+    // NOT USED HERE alert("list_ID_rank " + list_ID_rank);
+  }
+
+  //STEP 3. check if in range
+  // 0. order list
+  temp_ordered_list = list_ID_rank.slice(0); // clone the var since .sort overwrites
+  temp_ordered_list.sort(function(a,b){ return a - b ;});         // sort array
+  // compare list to range
+  // 1. create range
+  range_array = range(nplayers,1);
+  // 2. compare arrays
+  test = arraysEqual(temp_ordered_list, range_array);
+  //alert("test is " + test);
+
+  // if test is true -> pass variable ; if not -> error
+  if (test == true) {
+  //var suca = document.getElementById("bntOK");
+  //suca.setAttribute('type', 'submit');
+  document.getElementById("id_list_ID_rank").value=list_ID_rank;
+  document.getElementById("displayed_ID_jslist").value=list_target_player;
+  document.getElementById("form").submit();
+  } else {
+  alert("Ranking inserted is wrong. Please, make sure ranking goes from 1 to " + nplayers + ", without assigning the same rank to more than one participant");
+  }
+
+})
+})
+
+// Impede enter to refresh page
+$(document).ready(function() {
+  $(window).keydown(function(event){
+    if( (event.keyCode == 13)) {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
+</script>
+
+<p>
+    <font color="blue">Please submit your rankings.</font>
+    The ranking follows the following procedure. You are shown below a list, in a
+    random order, of each of the {{ nothers }} participants’ amounts placed in the group account in Part 1. Your task is to give
+    ranking numbers to each of the {{ nothers }} participants. Your ranking number for a participant should indicate your
+    preference to be with that participant in the same group in Part 2. <b>A rank of 1 indicates your most preferred
+    possible partner, {{ nothers }} the least preferred one.</b> You must use all {{ nothers }} potential ranks, giving
+    one to each participant about whom you are shown information.
+</p>
+
+<div class="panel panel-primary">
+    <table>
+    <tr>
+        <td>
+            <table class="table-condensed" style="width:auto; margin-top:20px;border-collapse:separate; border-spacing:2.1em">
+                <tbody>
+                    <th>Participants</th>
+                    {% for k in id_players %}
+                    <tr height = '40'>
+                        <td id="playerID{{ forloop.counter }}">{{ k }}</td>
+                    </tr>
+                        {% endfor %}
+                </tbody>
+            </table>
+        </td>
+        <td>
+            <table class="table-condensed" style="width:auto; margin-top:20px;border-collapse:separate; border-spacing:2.1em">
+                    <tbody>
+                        <th>Amount placed in the group account in Part 1 </th>
+                        {% for p in others_contributions %}
+                        <tr height = '40'>
+                            <td>{{ p }} tokens</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+            </table>
+        </td>
+        <td>
+            <table class="table-condensed" id= "tablewithranking" style="border:1px solid black; width:auto; margin-top:20px;border-collapse:separate; border-spacing:2.1em">
+                <tbody>
+                    <tr><th>Your Ranking</th></tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td><input class="btn btn-primary btn-large" type = "button" id = "btnOK" value="Confirm"></td>
+    </tr>
+</table>
+</div>
+<form id="form">
+    <input type="hidden" name="list_ID_rank" id="id_list_ID_rank"/>
+    <input type="hidden" name="displayed_ID" id="displayed_ID_jslist"/>
+</form>
+
+
+
+{% endblock %}

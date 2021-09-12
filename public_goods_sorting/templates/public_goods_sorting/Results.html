@@ -1,0 +1,35 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Feedback
+{% endblock %}
+
+{% block content %}
+  <p align="right"><b>Round {{ round }}</b></p>
+
+    <table class="table-condensed" style="width:500px; margin-top:20px;" align="center">
+        <tr><td>Amount <b>you</b> placed in the group account:</td><td>{{ player.contribution }}</td></tr>
+        <tr><td>Amount <b>others</b> placed in the group account:</td><td></td></tr>
+        {% for p in contribution_resh %}
+            <tr><td>Participant {{ forloop.counter }}</td><td>{{ p }} tokens</td></tr>
+        {% endfor %}
+
+        <tr><td colspan="2"><hr/></td></tr>
+        <tr><td>Total group account:</td><td>{{ group.total_contribution }} tokens</td></tr>
+
+        <tr><td colspan="2"><hr/></td></tr>
+
+        <tr><td>Your earnings from the group account:</td><td>{{ group.individual_share }} ECUs</td></tr>
+
+        <tr><td colspan="2"><hr/></td></tr>
+
+        <tr><td>Your total earnings in this round:</td><td>{{ player.payoff }} ECUs</td></tr>
+
+    </table>
+    <p align="center">
+    {% next_button %}
+
+    </p>
+
+{% endblock %}

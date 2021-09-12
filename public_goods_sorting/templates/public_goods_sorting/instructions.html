@@ -1,0 +1,53 @@
+{% load otree %}
+
+<div class="card bg-light instructions">
+    <div class="card-body">
+    <h3>
+        Instructions Part 1
+    </h3>
+
+    <p>
+        In this study, you will be in a randomly formed group
+        of {{ Constants.players_per_group }} participants. Each participant in
+        the group is given {{ Constants.endowment }}. The group
+        has the opportunity to undertake a joint project. Each participant in
+        the group decides how much she or he is going to contribute to
+        the project. Contribution could be any integer from 0
+        to {{ Constants.endowment }}.
+    </p>
+    <p>
+        The earnings from the project are calculated as follows: The
+        contributions of all {{ Constants.players_per_group }} participants are
+        added up, the total contribution
+        is multiplied by a factor of {{ Constants.multiplier }}, and the
+        resulting amount is the total earnings from the project, which is
+        evenly split among all {{ Constants.players_per_group }}
+        participants. Your payoff equals your earnings from the project, plus
+        the amount you did not contribute.
+    </p>
+
+    <p>
+        Example 1:
+        <ul>
+            <li>You put 30 points in the group account</li>
+            <li>70 tokens are left in your individual account</li>
+            <li>Suppose that the two other members of your group put a total of 60 tokens in the group account.
+                In total, the group account now comprises 60 + 30 = 90 points.</li>
+            <li>Your gain is then equal to 70 points (individual account) + 90 x (2/3) (group account) = 124 ECU.</li>
+        </ul>
+    </p>
+
+    <p>Example 2:
+        <ul>
+            <li>You put 60 points in the group account</li>
+            <li>40 tokens are left in your individual account</li>
+            <li>Suppose that the two other members of your group put a total of 80 tokens in the group account.
+                In total, the group account now comprises 120 + 60 = 180 points.</li>
+            <li>Your gain is then equal to 40 points (individual account) + 180 x (2/3) (group account) = 148 ECU.</li>
+        </ul>
+
+    </p>
+
+    </div>
+</div>
+

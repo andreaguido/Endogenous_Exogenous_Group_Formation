@@ -1,0 +1,264 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+Comprehension Quiz
+{% endblock %}
+
+{% block content %}
+<p>
+Please answer all questions below. You need to answer each question correctly in order to be able to continue the
+    experiment. You have 10 minutes to answer the 5 questions. Please raise your hand if you have questions.
+</p>
+<br>
+<br>
+<ul>
+    <li>
+        <b>Question 1. : Suppose you keep all 20 tokens to yourself and the other members of your group keep all their
+            tokens to themselves:</b>
+
+            <div class="form-group required">
+                <table class='table table-bordered text-center' style='width: auto; margin: auto'>
+                    <tr>
+                        <td>How much do you earn from the group account (in ECU)? </td>
+                        <td><input type="number" id="myNumber_0" value="" style="width: 4em;"></td>
+                        <td><p id="check_0"></p></td>
+                    </tr>
+
+                    <tr>
+                        <td>How much do you earn from your individual account (in ECU)?</td>
+                        <td><input type="number" id="myNumber_1" value="" style="width: 4em;"></td>
+                        <td><p id="check_1"></p></td>
+
+                    </tr>
+
+                    <tr>
+                        <td>How much does each other group member earn from their individual account (in ECU)?</td>
+                        <td><input type="number" id="myNumber_2" value="" style="width: 4em;"></td>
+                        <td><p id="check_2"></p></td>
+                    </tr>
+
+                    <tr>
+                        <td>How much do you earn in total (in ECU)?</td>
+                        <td><input type="number" id="myNumber_3" value="" style="width: 4em;"></td>
+                        <td><p id="check_3"></p></td>
+                    </tr>
+
+                    <tr>
+                        <td>How much does each other group member earn (in ECU)?</td>
+                        <td><input type="number" id="myNumber_4" value="" style="width: 4em;"></td>
+                        <td><p id="check_4"></p></td>
+                    </tr>
+
+                </table>
+            </div>
+
+    </li>
+
+    <li>
+        <b>Question 2. : Suppose you place all 20 tokens in the group account and the other members of your group place
+            all their tokens in the group account:</b>
+
+            <div class="form-group required">
+                <table class='table table-bordered text-center' style='width: auto; margin: auto'>
+                    <tr>
+                        <td>How much do you earn from the group account (in ECU)? </td>
+                        <td><input type="number" id="myNumber_5" value="" style="width: 4em;"></td>
+                        <td><p id="check_5"></p></td>
+                    </tr>
+
+                    <tr>
+                        <td>How much do you earn from your individual account (in ECU)?</td>
+                        <td><input type="number" id="myNumber_6" value="" style="width: 4em;"></td>
+                        <td><p id="check_6"></p></td>
+
+                    </tr>
+
+                    <tr>
+                        <td>How much does each other group member earn from their individual account (in ECU)?</td>
+                        <td><input type="number" id="myNumber_7" value="" style="width: 4em;"></td>
+                        <td><p id="check_7"></p></td>
+                    </tr>
+
+                    <tr>
+                        <td>How much do you earn in total (in ECU)?</td>
+                        <td><input type="number" id="myNumber_8" value="" style="width: 4em;"></td>
+                        <td><p id="check_8"></p></td>
+                    </tr>
+
+                    <tr>
+                        <td>How much does each other group member earn (in ECU)?</td>
+                        <td><input type="number" id="myNumber_9" value="" style="width: 4em;"></td>
+                        <td><p id="check_9"></p></td>
+                    </tr>
+
+                </table>
+            </div>
+
+    </li>
+
+    <li>
+        <b>Question 3. : Suppose you place all 20 tokens in the group account and the other members of your group place
+            zero tokens in the group account:</b>
+
+            <div class="form-group required">
+                <table class='table table-bordered text-center' style='width: auto; margin: auto'>
+                    <tr>
+                        <td>How much do you earn from the group account (in ECU)? </td>
+                        <td><input type="number" id="myNumber_10" value="" style="width: 4em;"></td>
+                        <td><p id="check_10"></p></td>
+                    </tr>
+
+                    <tr>
+                        <td>How much do you earn from your individual account (in ECU)?</td>
+                        <td><input type="number" id="myNumber_11" value="" style="width: 4em;"></td>
+                        <td><p id="check_11"></p></td>
+
+                    </tr>
+
+                    <tr>
+                        <td>How much does each other group member earn from their individual account (in ECU)?</td>
+                        <td><input type="number" id="myNumber_12" value="" style="width: 4em;"></td>
+                        <td><p id="check_12"></p></td>
+                    </tr>
+
+                    <tr>
+                        <td>How much do you earn in total (in ECU)?</td>
+                        <td><input type="number" id="myNumber_13" value="" style="width: 4em;"></td>
+                        <td><p id="check_13"></p></td>
+                    </tr>
+
+                    <tr>
+                        <td>How much does each other group member earn (in ECU)?</td>
+                        <td><input type="number" id="myNumber_14" value="" style="width: 4em;"></td>
+                        <td><p id="check_14"></p></td>
+                    </tr>
+
+                </table>
+            </div>
+
+    </li>
+
+    <li>
+        <b>Question 4. : Suppose you keep the 20 tokens in your private account (and therefore place zero in the group
+            account) and the other members of your group place all their tokens in the group account: </b>
+
+            <div class="form-group required">
+                <table class='table table-bordered text-center' style='width: auto; margin: auto'>
+                    <tr>
+                        <td>How much do you earn from the group account (in ECU)? </td>
+                        <td><input type="number" id="myNumber_15" value="" style="width: 4em;"></td>
+                        <td><p id="check_15"></p></td>
+                    </tr>
+
+                    <tr>
+                        <td>How much do you earn from your individual account (in ECU)?</td>
+                        <td><input type="number" id="myNumber_16" value="" style="width: 4em;"></td>
+                        <td><p id="check_16"></p></td>
+
+                    </tr>
+
+                    <tr>
+                        <td>How much does each other group member earn from their individual account (in ECU)?</td>
+                        <td><input type="number" id="myNumber_17" value="" style="width: 4em;"></td>
+                        <td><p id="check_17"></p></td>
+                    </tr>
+
+                    <tr>
+                        <td>How much do you earn in total (in ECU)?</td>
+                        <td><input type="number" id="myNumber_18" value="" style="width: 4em;"></td>
+                        <td><p id="check_18"></p></td>
+                    </tr>
+
+                    <tr>
+                        <td>How much does each other group member earn (in ECU)?</td>
+                        <td><input type="number" id="myNumber_19" value="" style="width: 4em;"></td>
+                        <td><p id="check_19"></p></td>
+                    </tr>
+
+                </table>
+            </div>
+
+    </li>
+    <li>
+        <b>Question 5. : how many decisions will you be asked to make in this part of the experiment?</b>
+        <tr>
+            <td><input type="number" id="myNumber_20" value="" style="width: 4em;"></td>
+        </tr>
+    </li>
+
+
+</ul>
+
+        <div>Number of right answers: <span id="nb_bonne_reponse"></span></div>
+<p id="bravo"></p>
+<div>
+    <button class="btn btn-primary btn-large" id="bouton" style="visibility:hidden;">Next</button>
+</div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        //Prevent the implicit submission:
+        var pref = "myNumber_";
+        //iterate over the input
+        for(var j = 0; boo = document.getElementById( pref + j ) ; j++){
+            boo.addEventListener('keypress', function(event) {
+            if (event.keyCode == 13) {
+                event.preventDefault();
+                }
+            });
+        };
+        //Every second, ask to check the player's input
+        var myVar = setInterval(function(){ myTask() }, 1000);
+
+        // define good answers
+        var liste_bonne_rep = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]
+
+        // define function to check empty input
+            function isEmpty(obj) {
+        for(var key in obj) {
+            if(obj.hasOwnProperty(key))
+                return false;
+        }
+        return true;
+        }
+
+        // main function
+        function myTask(){
+        //iterate over the player's answer and update if good or not
+        var pref_2 = "myNumber_";
+        var pref_3 = "check_";
+        for(var i = 0; boo = document.getElementById(pref_2 + i); i++){
+            boo_2 = document.getElementById(pref_3 + i);
+            answer = boo.value;
+            if (answer.length == 0) {
+                boo_2.innerHTML = "";
+                }
+            else if(answer == liste_bonne_rep[i]){
+                boo_2.innerHTML = "Correct Answer";
+                boo_2.style.color = "green";
+                }
+            else {
+                boo_2.innerHTML = "Wrong Answer";
+                boo_2.style.color = "red";
+                }
+            }
+        ;
+        //update number of good answer
+        var nb_b_rep = 0;
+        var prefix = 'check_';
+        for(var i = 0; el = document.getElementById(prefix + i); i++) {
+            if(el.innerHTML == "Correct Answer") {
+                nb_b_rep += 1;
+                }
+            }
+        ;
+        //allow player to move if he has all the good answer
+        document.getElementById("nb_bonne_reponse").innerHTML = nb_b_rep;
+        if(nb_b_rep == 20){
+        document.getElementById("bouton").style.visibility = "visible";
+        document.getElementById("bravo").innerHTML = "You replied correctly to all the questions. Now, you may proceed to the next page by clicking Next."}
+        }
+    </script>
+{% endblock %}

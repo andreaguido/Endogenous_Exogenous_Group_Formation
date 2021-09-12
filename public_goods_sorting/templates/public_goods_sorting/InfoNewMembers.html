@@ -1,0 +1,25 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+Information about members in your group
+{% endblock %}
+
+{% block content %}
+        <h4>You are now informed about the amount that each individual in your newly formed group had placed in their group
+            account in Part 1.</h4>
+    <font size="4">
+    <table class="table-condensed" style="width:600px; margin-top:20px" align="center">
+        <tr><th>Participant</th><th>Amount placed in the group account in Part 1</th></tr>
+        {% for p in contributionstodisplay %}
+            <tr><td align="center">{{ forloop.counter }}</td><td align="center"> {{ p }} tokens</td></tr>
+        {% endfor %}
+    </table>
+    </font>
+
+    <br>
+        <p align="center"><font size="4" color="blue">The group composition will remain unchanged for the next 10 rounds.</font></p>
+
+    {% next_button %}
+
+{% endblock %}

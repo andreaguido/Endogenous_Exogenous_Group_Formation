@@ -1,0 +1,30 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+    <h4>
+        <p style="text-align:justify; text-justify:inter-word;">
+            <center>
+            The regrouping option implemented in this session is <font color="blue"><b>option </b>
+            {% if treatment == "T1" %}
+            <b>A</b></font>.
+            </center> <br>
+            That is, your assignment to a group of 3 is based on <b>your preferences</b> expressed during the <b>ranking
+            stage</b> as well as on the rankings submitted by the other participants.
+            {% else %}
+            <b>B</b></font>.
+            </center> <br>
+            That is, your assignment to a group of 3 is decided by the <b>computer</b> and therefore is not based on the
+            rankings submitted in the previous stage.
+            {% endif %}
+        </p>
+    </h4>
+
+
+
+    {% next_button %}
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Instructions Part 1
+{% endblock %}
+
+{% block content %}
+<p>
+    <h6>Please read carefully the <b>instructions for Part 1</b> of the experiment.
+    Raise your hand if you have any question.
+    <br><br>
+    Press Next only when you are done reading the instructions. </h6>
+
+</p>
+<br>
+    {% next_button %}
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Summary of your earnings from Part 1 and Part 2
+{% endblock %}
+
+{% block content %}
+  
+    In Part 1:
+<ul>
+    <li>
+        you placed {{ part_1_contribution }} tokens in the group account.
+    </li>
+
+    <li>
+        The total number of tokens in the group account was {{ part_1_total_contribution }}.
+    </li>
+
+    <li>
+        Your total earnings from Part 1 (private and group accounts) are {{ part_1_payoff }} ECUs.
+    </li>
+</ul>
+
+    In Part 2:
+<ul>
+    <li>
+        Your total earnings from Part 2 (private and group accounts) are {{ part_2_payoff }} ECUs.
+    </li>
+</ul>
+
+Thus, your earnings from this experiment are {{ total }} ECUs ({{ amount_paid }} $). <br>
+Thank you for your participation! <br>
+
+<br><b>Leave us comment</b>:
+{% formfield player.comments %}
+<br><br>
+    {% next_button %}
+{% endblock %}

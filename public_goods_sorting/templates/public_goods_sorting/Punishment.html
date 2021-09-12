@@ -1,0 +1,88 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+
+
+{% block styles %}
+
+  <style type="text/css">
+  td {
+    text-align: center;
+    vertical-align: middle;
+  }
+  th {
+    text-align: center;
+    vertical-align: middle;
+  }
+  tr {
+    text-align: center;
+    vertical-align: middle;
+  }
+  .form-control {display:inline!important;}
+  </style>
+{% endblock %}
+
+{% block title %}
+    Sending punishment tokens
+{% endblock %}
+{% block scripts %}
+  <script type="text/javascript">
+ var maxpun = {{Constants.punishment_limit}};
+ var minpun = 0;
+ var totalpunishmentcost = 0;
+ {% if Constants.punishment_factor %}
+ {% for f in form %}
+  $( "#id_{{f.name}}" ).on('keyup', function () {
+    curval = Math.round($(this).val());
+    howmuch = (curval<=maxpun & curval>=minpun)  ?curval*{{Constants.punishment_factor}} :'--';
+     var receiver =  $( "#{{f.name}}_received" )
+  receiver.html(howmuch);
+!(curval<=maxpun & curval>=minpun) ? receiver.css( "color", "red" ): receiver.css( "color", "initial" );
+
+totalpunishmentcost=0;
+$('.punishinput').each(function(i, obj) {
+    totalpunishmentcost += Number(obj.value);
+});
+
+  $('#yourcost').html(totalpunishmentcost);
+  });
+  {% endfor %}
+  {% endif %}
+
+  </script>
+{% endblock %}
+{% block content %}
+
+      {% include 'pggfg/punishmentinstructions.html' %}
+  <table class="table table-hover table-striped table-responsive table-bordered">
+    <tr>
+        <th>Participant</th><th>Contribution</th><th>Punishment tokens sent</th><th>Their earnings reduced by</th></tr>
+    {% for ab in abclist %}
+    <tr>
+        <td>
+            {{ ab.2 }}
+
+        </td>
+        <td >{{ ab.1}}
+        </td>
+  </td>
+        <td><input autofocus="autofocus" class="form-control punishinput " id="id_{{ab.0.name}}" max="{{Constants.punishment_limit}}" min="0" name="{{ab.0.name}}" maxlength="3" required="required" type="number"></td>
+<td><div id="{{ab.0.name}}_received">
+
+</div></td>
+    </tr>
+    {% endfor %}
+    <tr class='danger'>
+<td colspan="3"><b>Your earnings will be diminished by:</b></td>
+
+
+<td id='yourcost'></td>
+</tr>
+</table>
+
+
+
+
+    {% next_button %}
+
+{% endblock %}
