@@ -1,7 +1,7 @@
 from ._builtin import Page, WaitPage
 from otree.api import Currency as c, currency_range
 from .models import Constants
-#from django import forms
+from django import forms
 from . import models
 import random
 import string
