@@ -6,19 +6,19 @@ Information about members in your group
 {% endblock %}
 
 {% block content %}
-        <h4>You are now informed about the amount that each individual in your newly formed group had placed in their group
-            account in Part 1.</h4>
+        <h4>Vous êtes maintenant informé du nombre de jetons que chaque individu de votre groupe nouvellement formé avait
+            placé sur son compte de groupe dans la Partie 1.</h4>
     <font size="4">
     <table class="table-condensed" style="width:600px; margin-top:20px" align="center">
-        <tr><th>Participant</th><th>Amount placed in the group account in Part 1</th></tr>
+        <tr><th>Participant</th><th>Jetons placés sur le compte collectif dans la Partie 1 </th></tr>
         {% for p in contributionstodisplay %}
-            <tr><td align="center">{{ forloop.counter }}</td><td align="center"> {{ p }} tokens</td></tr>
+            <tr><td align="center">{{ forloop.counter }}</td><td align="center"> {{ p }} jetons</td></tr>
         {% endfor %}
     </table>
     </font>
 
     <br>
-        <p align="center"><font size="4" color="blue">The group composition will remain unchanged for the next 10 rounds.</font></p>
+        <p align="center"><font size="4" color="blue">La composition des groupes restera inchangée pour les 10 prochains tours.</font></p>
 
     {% next_button %}
 

@@ -94,7 +94,7 @@ $(document).ready(function(){
   document.getElementById("displayed_ID_jslist").value=list_target_player;
   document.getElementById("form").submit();
   } else {
-  alert("Ranking inserted is wrong. Please, make sure ranking goes from 1 to " + nplayers + ", without assigning the same rank to more than one participant");
+  alert("Le classement inséré est incorrect. Veuillez vous assurer que le classement va de 1 à " + nplayers + ", sans attribuer le même rang à plus d'un participant.");
   }
 
 })
@@ -139,7 +139,7 @@ $(document).ready(function() {
         <td>
             <table class="table-condensed" style="width:auto; margin-top:20px;border-collapse:separate; border-spacing:2.1em">
                     <tbody>
-                        <th>Amount placed in the group account in Part 1 </th>
+                        <th>Jetons placés sur le compte collectif dans la Partie 1 </th>
                         {% for p in others_contributions %}
                         <tr height = '40'>
                             <td>{{ p }} tokens</td>
@@ -151,7 +151,7 @@ $(document).ready(function() {
         <td>
             <table class="table-condensed" id= "tablewithranking" style="border:1px solid black; width:auto; margin-top:20px;border-collapse:separate; border-spacing:2.1em">
                 <tbody>
-                    <tr><th>Your Ranking</th></tr>
+                    <tr><th>Votre classement</th></tr>
                 </tbody>
             </table>
         </td>

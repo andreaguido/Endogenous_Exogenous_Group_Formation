@@ -182,6 +182,7 @@ class Demographics(Page):
 
     form_model = 'player'
     form_fields = ['age',
+                   'gender',
                    'country']
 
 class FinalResults(Page):

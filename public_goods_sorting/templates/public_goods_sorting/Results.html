@@ -9,22 +9,22 @@
   <p align="right"><b>Round {{ round }}</b></p>
 
     <table class="table-condensed" style="width:500px; margin-top:20px;" align="center">
-        <tr><td>Amount <b>you</b> placed in the group account:</td><td>{{ player.contribution }}</td></tr>
-        <tr><td>Amount <b>others</b> placed in the group account:</td><td></td></tr>
+        <tr><td>Les jetons que <b>vous</b> avez placés sur le compte du groupe :<td>{{ player.contribution }}</td></tr>
+        <tr><td>Jetons que les <b>autres membres du group</b> ont placés sur le compte collectif :</td><td></td></tr>
         {% for p in contribution_resh %}
-            <tr><td>Participant {{ forloop.counter }}</td><td>{{ p }} tokens</td></tr>
+            <tr><td>Participant {{ forloop.counter }}</td><td>{{ p }} jetons</td></tr>
         {% endfor %}
 
         <tr><td colspan="2"><hr/></td></tr>
-        <tr><td>Total group account:</td><td>{{ group.total_contribution }} tokens</td></tr>
+        <tr><td>Nombre total de jetons dans le compte collectif :</td><td>{{ group.total_contribution }} jetons</td></tr>
 
         <tr><td colspan="2"><hr/></td></tr>
 
-        <tr><td>Your earnings from the group account:</td><td>{{ group.individual_share }} ECUs</td></tr>
+        <tr><td>Vos gains sur le compte collectif :</td><td>{{ group.individual_share }} ECUs</td></tr>
 
         <tr><td colspan="2"><hr/></td></tr>
 
-        <tr><td>Your total earnings in this round:</td><td>{{ player.payoff }} ECUs</td></tr>
+        <tr><td>Vos gains totaux pour cette période:</td><td>{{ player.payoff }} ECUs</td></tr>
 
     </table>
     <p align="center">

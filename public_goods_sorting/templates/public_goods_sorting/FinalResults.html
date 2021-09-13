@@ -2,37 +2,37 @@
 {% load otree %}
 
 {% block title %}
-    Summary of your earnings from Part 1 and Part 2
+    Résumé de vos gains de la Partie 1 et de la Partie 2
 {% endblock %}
 
 {% block content %}
   
-    In Part 1:
+    Dans la Partie 1:
 <ul>
     <li>
-        you placed {{ part_1_contribution }} tokens in the group account.
+        vous avez placé {{ part_1_contribution }} jetons sur le compte collectif.
     </li>
 
     <li>
-        The total number of tokens in the group account was {{ part_1_total_contribution }}.
+        Le nombre total de jetons sur le compte collectif était de {{ part_1_total_contribution }}.
     </li>
 
     <li>
-        Your total earnings from Part 1 (private and group accounts) are {{ part_1_payoff }} ECUs.
+        Le total de vos gains de la Partie 1 (comptes privés et collectifs) est de {{ part_1_payoff }} ECUs.
     </li>
 </ul>
 
     In Part 2:
 <ul>
     <li>
-        Your total earnings from Part 2 (private and group accounts) are {{ part_2_payoff }} ECUs.
+        Le total de vos gains de la Partie 2 (comptes privés et collectifs) est de {{ part_2_payoff }} ECUs.
     </li>
 </ul>
 
-Thus, your earnings from this experiment are {{ total }} ECUs ({{ amount_paid }} $). <br>
-Thank you for your participation! <br>
+Par conséquent, vos gains pour cette expérience sont {{ total }} ECUs ({{ amount_paid }} $). <br>
+Merci de votre participation ! <br>
 
-<br><b>Leave us comment</b>:
+<br><b>Laissez-nous un commentaire</b>:
 {% formfield player.comments %}
 <br><br>
     {% next_button %}
