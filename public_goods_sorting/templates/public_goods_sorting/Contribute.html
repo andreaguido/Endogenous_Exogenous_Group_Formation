@@ -7,10 +7,10 @@
 
 {% block content %}
 {% if round > 0 %}
-  <p align="right"><b>Round {{ round }}</b></p>
+  <p align="right"><b>Période {{ round }}</b></p>
 {% endif %}
 
-    {% formfield player.contribution label="Please enter the number of tokens that you want to place in the group account (from 0 to 20)." %}
+    {% formfield player.contribution label="Veuillez saisir le nombre de jetons que vous souhaitez placer sur le compte collectif (de 0 à 20)." %}
 
     {% next_button %}
 
