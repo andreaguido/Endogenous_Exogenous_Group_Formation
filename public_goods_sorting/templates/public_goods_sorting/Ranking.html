@@ -3,7 +3,7 @@
 {% load staticfiles %}
 
 {% block title %}
-    Ranking stage
+    Le classement
 {% endblock %}
 
 {% block script %}
@@ -112,13 +112,20 @@ $(document).ready(function() {
 </script>
 
 <p>
-    <font color="blue">Please submit your rankings.</font>
-    The ranking follows the following procedure. You are shown below a list, in a
-    random order, of each of the {{ nothers }} participants’ amounts placed in the group account in Part 1. Your task is to give
-    ranking numbers to each of the {{ nothers }} participants. Your ranking number for a participant should indicate your
-    preference to be with that participant in the same group in Part 2. <b>A rank of 1 indicates your most preferred
-    possible partner, {{ nothers }} the least preferred one.</b> You must use all {{ nothers }} potential ranks, giving
-    one to each participant about whom you are shown information.
+    La procédure pour classer les autres participants est la suivante.
+    Vous voyez apparaitre sur votre écran une <b>liste</b> avec
+    <b>tous les participants</b> qui prennent part à cette expérience en même temps que vous.
+    L'ordre dans lequel l’identifiant
+    d’un participant est affiché est déterminé de manière complètement aléatoire.
+    Pour chaque participant/identifiant,
+    l’ordinateur vous informe du <b>nombre de jetons</b> que ce participant a placé sur le <b>compte collectif</b> lors de la <b>Partie 1</b>.
+
+    <br><br>
+
+    Vous devez <b>classer</b> chaque participant dans l’ordre de préférence : classer en 1er le participant avec lequel vous
+    souhaitez le plus être dans le même groupe, en 2ème le participant qui arrive juste après le 1er, ainsi de suite
+    jusqu’au participant avec lequel vous souhaitez le moins être dans le même groupe. Vous devez classer chaque
+    participant de la liste affichée sur l’écran de votre ordinateur.
 </p>
 
 <div class="panel panel-primary">
@@ -129,7 +136,7 @@ $(document).ready(function() {
                 <tbody>
                     <th>Participants</th>
                     {% for k in id_players %}
-                    <tr height = '40'>
+                    <tr height = '40' align="center">
                         <td id="playerID{{ forloop.counter }}">{{ k }}</td>
                     </tr>
                         {% endfor %}
@@ -141,8 +148,8 @@ $(document).ready(function() {
                     <tbody>
                         <th>Jetons placés sur le compte collectif dans la Partie 1 </th>
                         {% for p in others_contributions %}
-                        <tr height = '40'>
-                            <td>{{ p }} tokens</td>
+                        <tr height = '40' align="center">
+                            <td>{{ p }} jetons</td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -151,7 +158,7 @@ $(document).ready(function() {
         <td>
             <table class="table-condensed" id= "tablewithranking" style="border:1px solid black; width:auto; margin-top:20px;border-collapse:separate; border-spacing:2.1em">
                 <tbody>
-                    <tr><th>Votre classement</th></tr>
+                    <tr><th>Ordre de préférence</th></tr>
                 </tbody>
             </table>
         </td>
@@ -159,10 +166,11 @@ $(document).ready(function() {
     <tr>
         <td></td>
         <td></td>
-        <td><input class="btn btn-primary btn-large" type = "button" id = "btnOK" value="Confirm"></td>
+        <td><input class="btn btn-primary btn-large" type = "button" id = "btnOK" value="Confirmer vos choix"></td>
     </tr>
 </table>
 </div>
+
 <form id="form">
     <input type="hidden" name="list_ID_rank" id="id_list_ID_rank"/>
     <input type="hidden" name="displayed_ID" id="displayed_ID_jslist"/>
