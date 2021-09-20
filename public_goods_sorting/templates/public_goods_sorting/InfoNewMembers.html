@@ -2,18 +2,24 @@
 {% load otree %}
 
 {% block title %}
-Informations sur les membres de votre groupe
+Informations concernant les membres de votre <b>nouveau</b> groupe
 {% endblock %}
 
 {% block content %}
-        <h4>Vous êtes maintenant informé du nombre de jetons que chaque individu de votre groupe nouvellement formé avait
-            placé sur son compte de groupe dans la Partie 1.</h4>
+<h4>Vous êtes maintenant dans un nouveau groupe avec <b>deux autres participants</b>, indiqué comme Participant 1 et 2.
+
+    Ci-dessous est indiqué le nombre de jetons placés sur le compte collectif par chacun des deux participants qui forment votre groupe ainsi que par vous-même :
+</h4>
     <font size="4">
-    <table class="table-condensed" style="width:600px; margin-top:20px" align="center">
-        <tr><th>Participant</th><th>Jetons placés sur le compte collectif dans la Partie 1 </th></tr>
-        SAY SOMEHTING ABOUT NEW IDS? NOT THE SAME AS RANKING STAGE OR PARTIE 1
+    <table class="table-condensed" style="margin-top:20px" align="center">
+        <tr><td>Jetons que <b>vous</b> avez placés sur le compte collectif lors de la Partie 1 :<td><b>{{ player.contribution }} jetons</b></td></tr>
+
+        <tr><td colspan="2"><hr/></td></tr>
+
+        <tr><td>Jetons placé sur le compte collectif par les <b>deux autres participants</b> lors de la Partie 1 :</td><td></td></tr>
+
         {% for p in contributionstodisplay %}
-            <tr><td align="center">{{ forloop.counter }}</td><td align="center"> {{ p }} jetons</td></tr>
+        <tr><td align="right">Participant {{ forloop.counter }}</td><td align="center"> <b>{{ p }} jetons</b></td></tr>
         {% endfor %}
     </table>
     </font>

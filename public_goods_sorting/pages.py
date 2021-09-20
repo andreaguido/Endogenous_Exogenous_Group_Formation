@@ -149,8 +149,8 @@ class InfoNewMembers(Page):
         otherplayersinfuturegroup = self.player.in_round(2).get_others_in_group()
         contributionstodisplay = [p.in_round(1).contribution for p in otherplayersinfuturegroup]
         return dict(
-            treatment=self.subsession.treatment,
-            otherplayersinfuturegroup=otherplayersinfuturegroup,
+            #treatment=self.subsession.treatment,
+            #otherplayersinfuturegroup=otherplayersinfuturegroup,
             contributionstodisplay=contributionstodisplay
         )
 
@@ -166,6 +166,7 @@ class Results(Page):
             total_earnings=self.group.total_contribution * Constants.multiplier,
             contribution_resh=temp,#contributions_resh,
             round=self.subsession.round_number - 1,
+            private_ecus=(Constants.endowment - self.player.contribution) * Constants.multiplier
         )
 
 

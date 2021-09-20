@@ -8,20 +8,24 @@
 {% block content %}
 
     <table class="table-condensed" style="margin-top:20px;" align="center">
-        <tr><td>Les jetons que <b>vous</b> avez placés sur le compte du groupe :<td>{{ player.contribution }}</td></tr>
+        <tr><td>Les jetons que <b>vous</b> avez placés sur le compte collectif :<td>{{ player.contribution }}</td></tr>
         <tr><td></td></tr>
         <hr/>
-        <tr><td>Jetons que les <b>autres membres du group</b> ont placés sur le compte collectif :</td><td></td></tr>
+        <tr><td>Jetons que les <b>autres membres du groupe</b> ont placés sur le compte collectif :</td><td></td></tr>
         {% for p in contribution_resh %}
             <tr><td>Participant {{ forloop.counter }}</td><td>{{ p }} jetons</td></tr>
         {% endfor %}
 
         <tr><td colspan="2"><hr/></td></tr>
-        <tr><td>Nombre total de jetons dans le compte collectif :</td><td>{{ group.total_contribution }} jetons</td></tr>
+        <tr><td>Nombre total de jetons dans le compte collectif à cette période :</td><td>{{ group.total_contribution }} jetons</td></tr>
 
         <tr><td colspan="2"><hr/></td></tr>
 
-        <tr><td>Vos gains sur le compte collectif :</td><td>{{ group.individual_share }} ECUs</td></tr>
+        <tr><td>Vos gains du compte collectif de la période :</td><td>{{ group.individual_share }} ECUs</td></tr>
+
+        <tr><td colspan="2"><hr/></td></tr>
+
+        <tr><td>Vos gains du compte privé de la période :</td><td>{{ private_ecus }} ECUs</td></tr>
 
         <tr><td colspan="2"><hr/></td></tr>
 
