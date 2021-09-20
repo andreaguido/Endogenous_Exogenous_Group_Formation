@@ -7,7 +7,7 @@ Informations concernant les membres de votre <b>nouveau</b> groupe
 
 {% block content %}
 <h4>Vous êtes maintenant dans un nouveau groupe avec <b>deux autres participants</b>, indiqué comme Participant 1 et 2.
-
+    <br>
     Ci-dessous est indiqué le nombre de jetons placés sur le compte collectif par chacun des deux participants qui forment votre groupe ainsi que par vous-même :
 </h4>
     <font size="4">
@@ -19,7 +19,8 @@ Informations concernant les membres de votre <b>nouveau</b> groupe
         <tr><td>Jetons placé sur le compte collectif par les <b>deux autres participants</b> lors de la Partie 1 :</td><td></td></tr>
 
         {% for p in contributionstodisplay %}
-        <tr><td align="right">Participant {{ forloop.counter }}</td><td align="center"> <b>{{ p }} jetons</b></td></tr>
+                <tr><td colspan="2"><hr/></td></tr>
+                <tr><td align="center">Participant {{ forloop.counter }}</td><td align="center"> <b>{{ p }} jetons</b></td></tr>
         {% endfor %}
     </table>
     </font>
