@@ -161,12 +161,19 @@ class Results(Page):
     def vars_for_template(self):
         # get contributions and reshuffle them
         temp=[p.contribution for p in self.player.get_others_in_group()]
-        contributions_resh=random.sample(temp, len(temp))
+        # NO RANDOM DISPLAY contributions_resh=random.sample(temp, len(temp))
         return dict(
             total_earnings=self.group.total_contribution * Constants.multiplier,
-            contribution_resh=contributions_resh,
-            round=self.subsession.round_number - 1
+            contribution_resh=temp,#contributions_resh,
+            round=self.subsession.round_number - 1,
         )
+
+
+class End_part_2(Page):
+
+    def is_displayed(self):
+        return self.subsession.round_number == Constants.num_rounds
+
 
 class Part3Test(Page):
     form_model = 'player'
@@ -175,6 +182,7 @@ class Part3Test(Page):
     def is_displayed(self):
         return self.subsession.round_number == Constants.num_rounds
 
+
 class Demographics(Page):
 
     def is_displayed(self):
@@ -182,8 +190,7 @@ class Demographics(Page):
 
     form_model = 'player'
     form_fields = ['age',
-                   'gender',
-                   'country']
+                   'gender', 'email']
 
 class FinalResults(Page):
     """final results of the experiment"""
@@ -208,8 +215,8 @@ page_sequence = [Welcome,
                  ManualAdvance1,
                  Introduction,
                  ManualAdvance2,
-                 #Quiz,
-                 #ManualAdvance3,
+                 Quiz,
+                 ManualAdvance3,
                  Contribute,
                  WaitPage1,
                  WaitPage2,
@@ -222,6 +229,7 @@ page_sequence = [Welcome,
                  MechanismDisplay,
                  InfoNewMembers,
                  Results,
-                 #Part3Test,
-                 #Demographics,
-                 FinalResults]
+                 End_part_2,
+                 Part3Test,
+                 FinalResults,
+                 Demographics]

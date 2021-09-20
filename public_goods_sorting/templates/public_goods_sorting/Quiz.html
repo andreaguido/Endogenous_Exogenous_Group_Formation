@@ -2,7 +2,7 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-Quiz de compréhension
+Quizz de compréhension
 {% endblock %}
 
 {% block content %}
@@ -13,7 +13,7 @@ Quiz de compréhension
 <br>
 <ul>
     <li>
-        <b>Question 1. : Supposons que vous gardez les 20 jetons sur votre compte individuel et que les autres membres de
+        <b>Question 1. : Supposons que vous gardez les 20 jetons sur votre compte individuel et que les autres 2 membres de
             votre groupe gardent également tous leurs jetons sur leurs comptes individuels :</b>
 
             <div class="form-group required">
@@ -48,7 +48,7 @@ Quiz de compréhension
     </li>
 
     <li>
-        <b>Question 2. : Supposons que vous placez les 20 jetons dans le compte collectif et que les autres membres de
+        <b>Question 2. : Supposons que vous placez les 20 jetons dans le compte collectif et que les autres 2 membres de
             votre groupe placent tous leurs jetons dans le compte collectif :</b>
 
             <div class="form-group required">
@@ -84,7 +84,7 @@ Quiz de compréhension
     </li>
 
     <li>
-        <b>Question 3. : Supposons que vous placez les 20 jetons dans le compte collectif et les autres membres de votre
+        <b>Question 3. : Supposons que vous placez les 20 jetons dans le compte collectif et les autres 2 membres de votre
             groupe placent zéro jetons dans le compte collectif :</b>
 
             <div class="form-group required">
@@ -121,7 +121,7 @@ Quiz de compréhension
 
     <li>
         <b>Question 4. : Supposons que vous gardez les 20 jetons dans votre compte privé (et donc vous placez zéro dans
-            le compte collectif) et que les autres membres de votre groupe placent tous leurs jetons dans le compte collectif :</b>
+            le compte collectif) et que les autres 2 membres de votre groupe placent tous leurs jetons dans le compte collectif :</b>
 
             <div class="form-group required">
                 <table class='table table-bordered text-center' style='width: auto; margin: auto'>
@@ -169,10 +169,10 @@ Quiz de compréhension
 
 </ul>
 
-        <div>Number of right answers: <span id="nb_bonne_reponse"></span></div>
+        <div>Nombre des bonnes réponses: <span id="nb_bonne_reponse"></span></div>
 <p id="bravo"></p>
 <div>
-    <button class="btn btn-primary btn-large" id="bouton" style="visibility:hidden;">Next</button>
+    <button class="btn btn-primary btn-large" id="bouton" style="visibility:hidden;">Suivant</button>
 </div>
 {% endblock %}
 
@@ -215,20 +215,19 @@ Quiz de compréhension
                 boo_2.innerHTML = "";
                 }
             else if(answer == liste_bonne_rep[i]){
-                boo_2.innerHTML = "Réponse correcte";
+                boo_2.innerHTML = "Bonne réponse";
                 boo_2.style.color = "green";
                 }
             else {
-                boo_2.innerHTML = "Mauvaise réponse";
+                boo_2.innerHTML = "Mauvaise réponse, la réponse est " + liste_bonne_rep[i];
                 boo_2.style.color = "red";
                 }
-            }
-        ;
+            };
         //update number of good answer
         var nb_b_rep = 0;
         var prefix = 'check_';
         for(var i = 0; el = document.getElementById(prefix + i); i++) {
-            if(el.innerHTML == "Réponse correcte") {
+            if(el.innerHTML == "Bonne réponse") {
                 nb_b_rep += 1;
                 }
             }

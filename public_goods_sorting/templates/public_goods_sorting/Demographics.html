@@ -2,14 +2,18 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-Demographic Questions
+Page de paiement
 {% endblock %}
 
 {% block content %}
 <head><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
-<table>
-<tr>
+TO BE DEFINED: PAID VIA EMAIL OR TELEPHONE NUMBER
+    {% formfield player.age %}
+    {% formfield player.gender %}
+    {% formfield player.email label="Inseréz votre numero de portable ou addresse email pour le virement par Lydia" %}
+<!--<table>
+ <tr>
     <td><label>Age:</label></td>
     <td><input type="number" id="agenumber"></td>
 </tr>
@@ -17,8 +21,9 @@ Demographic Questions
     <td><label>Gender:</label></td>
     <td><input type="number" id="gendernumber"></td>
 </tr>
+-->
 
-<tr>
+<!--<tr>
 
     <td><label>Pays:</label></td>
     <td><select class="tendina">
@@ -272,12 +277,12 @@ Demographic Questions
 
         </select></td>
 </tr>
-</table>
-
-<form id="form">
-    <input type="text" name="age" id="id_age">
-    <input type="text" name="country" id="id_country">
-<input type="button" name="sucabutton" id="suca" value="NEXT">
+</table>-->
+<br><br>
+{% next_button %}
+<!--<form id="form">
+    <input type="text" name="country" id="id_country" style="visibility:hidden">
+<input type="button" class = "btn btn-primary" name="sucabutton" id="suca" value="Suivant">
 </form>
 <script>
     $(document).ready(function(){
@@ -295,7 +300,7 @@ Demographic Questions
     });
 });
 </script>
-
+-->
 {% endblock %}
 
 {% block scripts %}

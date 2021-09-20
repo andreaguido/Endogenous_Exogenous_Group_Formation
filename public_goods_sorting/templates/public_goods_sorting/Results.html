@@ -2,14 +2,15 @@
 {% load otree %}
 
 {% block title %}
-    Feedback
+    Résultats période {{ round }}
 {% endblock %}
 
 {% block content %}
-  <p align="right"><b>Période {{ round }}</b></p>
 
-    <table class="table-condensed" style="width:500px; margin-top:20px;" align="center">
+    <table class="table-condensed" style="margin-top:20px;" align="center">
         <tr><td>Les jetons que <b>vous</b> avez placés sur le compte du groupe :<td>{{ player.contribution }}</td></tr>
+        <tr><td></td></tr>
+        <hr/>
         <tr><td>Jetons que les <b>autres membres du group</b> ont placés sur le compte collectif :</td><td></td></tr>
         {% for p in contribution_resh %}
             <tr><td>Participant {{ forloop.counter }}</td><td>{{ p }} jetons</td></tr>

@@ -11,6 +11,7 @@ Informations sur les membres de votre groupe
     <font size="4">
     <table class="table-condensed" style="width:600px; margin-top:20px" align="center">
         <tr><th>Participant</th><th>Jetons placés sur le compte collectif dans la Partie 1 </th></tr>
+        SAY SOMEHTING ABOUT NEW IDS? NOT THE SAME AS RANKING STAGE OR PARTIE 1
         {% for p in contributionstodisplay %}
             <tr><td align="center">{{ forloop.counter }}</td><td align="center"> {{ p }} jetons</td></tr>
         {% endfor %}
@@ -18,7 +19,7 @@ Informations sur les membres de votre groupe
     </font>
 
     <br>
-        <p align="center"><font size="4" color="blue">La composition des groupes restera inchangée pour les 10 prochains tours.</font></p>
+        <p align="center"><font size="4" color="blue">La composition des groupes restera inchangée pour les 10 prochains périodes.</font></p>
 
     {% next_button %}
 

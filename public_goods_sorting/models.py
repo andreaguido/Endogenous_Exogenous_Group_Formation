@@ -280,16 +280,18 @@ class Player(BasePlayer):
     timeout_contribution = models.IntegerField()
 #    rank_sum = models.IntegerField()
     age = models.IntegerField()
-
     gender = models.StringField(
-        choices=[['Male', 'Male'], ['Female', 'Female'], ['Non-Binary', 'Non-Binary'], ['Third-Gender/Other', 'Third-Gender/Other']],
+        choices=[['Homme', 'Homme'], ['Femme', 'Femme'], ['Autres', 'Autres']],
         label='Gender',
         widget=widgets.RadioSelect)
-    country = models.StringField()
+    #country = models.StringField()
+    email = models.StringField()
+
     q_triad = models.StringField()
 
-    comments = models.TextField(
+    comments = models.LongStringField(
         blank=True,
         max_length=3000,
+
     )
 
