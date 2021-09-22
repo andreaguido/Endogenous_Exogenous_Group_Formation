@@ -8,17 +8,20 @@ class PlayerBot(Bot):
 
     def play_round(self):
         if self.round_number == 1:
-            yield (pages.Welcome)
+            yield Submission(pages.Welcome, timeout_happened=True, check_html=False)
             yield (pages.Consentment)
             yield Submission(pages.ManualAdvance1, timeout_happened=True, check_html=False)
             yield (pages.Introduction)
             yield Submission(pages.ManualAdvance2, timeout_happened=True, check_html=False)
+            yield Submission(pages.Quiz, timeout_happened=True, check_html=False)
+            yield Submission(pages.ManualAdvance3, timeout_happened=True, check_html=False)
             yield Submission(pages.Contribute, dict(contribution=rn.randint(0,20)))
             yield Submission(pages.ManualAdvance4, timeout_happened=True, check_html=False)
             yield (pages.IntroductionPart2)
             yield Submission(pages.ManualAdvance5, timeout_happened=True, check_html=False)
             yield Submission(pages.Ranking, dict(
-                list_ID_rank="3,2,1,5,4,7,8,9,10,11,15,16,6,12,14,13,17,18"),
+                list_ID_rank="3,2,1,5,4,7,8,9,10,11,15,6,12,14,13",
+            displayed_ID="1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"),
                              check_html=False)
             yield (pages.MechanismDisplay)
             yield (pages.InfoNewMembers)

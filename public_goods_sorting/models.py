@@ -25,7 +25,7 @@ class Constants(BaseConstants):
     name_in_url = 'public_goods_sorting'
     players_per_group = 3
     num_others_per_group = players_per_group - 1
-    num_rounds = 3 # change it to 11 (1 one shot + 10 rounds)
+    num_rounds = 11 # change it to 11 (1 one shot + 10 rounds)
     endowment = 20
 
     instructions_template = 'public_goods_sorting/instructions.html'

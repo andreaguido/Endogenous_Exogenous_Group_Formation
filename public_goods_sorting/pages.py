@@ -166,7 +166,7 @@ class Results(Page):
             total_earnings=self.group.total_contribution * Constants.multiplier,
             contribution_resh=temp,#contributions_resh,
             round=self.subsession.round_number - 1,
-            private_ecus=(Constants.endowment - self.player.contribution) * Constants.multiplier
+            private_ecus=(Constants.endowment - self.player.contribution)
         )
 
 
@@ -208,7 +208,7 @@ class FinalResults(Page):
             part_1_contribution=self.player.in_round(1).contribution,
             part_1_total_contribution=self.group.in_round(1).total_contribution,
             total=self.participant.payoff,
-            amount_paid=self.participant.payoff/17
+            amount_paid=self.participant.payoff/self.session.config['taux_de_conversion']
         )
 
 page_sequence = [Welcome,
@@ -233,4 +233,5 @@ page_sequence = [Welcome,
                  End_part_2,
                  Part3Test,
                  FinalResults,
-                 Demographics]
+                 Demographics
+]

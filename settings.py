@@ -6,7 +6,7 @@ from os import environ
 # e.g. self.session.config['participation_fee']
 
 SESSION_CONFIG_DEFAULTS = dict(
-    real_world_currency_per_point=1.00,
+    real_world_currency_per_point=0.00,
     participation_fee=0.00,
     doc="",
 )
@@ -17,7 +17,7 @@ dict(
         name='public_goods_sorting',
         display_name="Public Goods Sorting",
         num_demo_participants=3,
-        app_sequence=['public_goods_sorting', 'payment_info'],
+        app_sequence=['public_goods_sorting'],
         treatment = "T1",
         doc=""" <h1>Checklist</h1>
             <ul> Treatment setup:
@@ -27,7 +27,8 @@ dict(
            </ul>
 
             """,
-        use_browser_bots = False
+        use_browser_bots = False,
+        taux_de_conversion=35
 
 )
 ]
