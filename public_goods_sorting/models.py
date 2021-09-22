@@ -25,7 +25,7 @@ class Constants(BaseConstants):
     name_in_url = 'public_goods_sorting'
     players_per_group = 3
     num_others_per_group = players_per_group - 1
-    num_rounds = 3
+    num_rounds = 3 # change it to 11 (1 one shot + 10 rounds)
     endowment = 20
 
     instructions_template = 'public_goods_sorting/instructions.html'
@@ -48,10 +48,10 @@ class Subsession(BaseSubsession):
         # function used in endogenous sorting
         print("######### IM IN ENDOGENOUS FUNCTION ###########")
         ## init vars used in this function
-        rankingmatrix = []  #
-        players = self.get_players()  #
+        rankingmatrix = []  # matrix saving everyone's ranking of each other
+        players = self.get_players()  # array of players
         formed_groups = []  # list including all formed groups
-        i = 0  #
+        i = 0  # indicator for loops
 
         # function to get mutual ranking matrix (See Unel et al. 2005 EJ)
         for p in players:
@@ -59,13 +59,11 @@ class Subsession(BaseSubsession):
             temp_displayed_id_char = p.displayed_ID # this is a char. array including the IDs of others players in the session displayed to the subject (page Ranking.html; passed through JavaScript)
             temp_list = list(int(i) for i in temp_list_char.split(",")) # de-char
             temp_list_id = list(int(i) for i in temp_displayed_id_char.split(",")) # de-char
-            ### here sort temp_list based on temp_list_id
-            temp_list_sorted = [x for _, x in sorted(zip(temp_list_id, temp_list))]
-            # add 0 for matrix diagonal
-            temp_list_sorted.insert(i, 0)
+            temp_list_sorted = [x for _, x in sorted(zip(temp_list_id, temp_list))] # here sort temp_list based on temp_list_id
+            temp_list_sorted.insert(i, 0) # add 0 for matrix diagonal
             print("this is temp list sorted ", temp_list_sorted)
-            rankingmatrix.append(temp_list_sorted)
-            print("this is the ranking matrix ", rankingmatrix)
+            rankingmatrix.append(temp_list_sorted) # append values and start over with the next player
+            print("this is the ranking matrix in the process ", rankingmatrix)
             i += 1
 
         rankingmatrix = np.array(rankingmatrix)  # assign matrix of rankings as np array instead of list for computational reasons (see slicing below)
@@ -75,14 +73,11 @@ class Subsession(BaseSubsession):
 
         # function to make optimal groups (two loops, j=groups; i=individuals)
         for j in list(range(1, self.number_of_groups)):
-            #print("group number ", j)
-            #print("players available ", initial_number_players)
             comb = combinations(initial_number_players, 3)  # compute combinations
             rank_sum = []  # init var sum of ranks in a group
 
             # function to find min.ranking groups
             for i in list(comb):
-                # print("possible groups ", i)
                 idx = np.array(i)  # get index of the row and col as array
                 subset_rankingmatrix = (rankingmatrix[idx[:, None], idx])  # subset matrix using idx
                 rank_sum.append(np.sum(subset_rankingmatrix))  # sum values of the matrix
@@ -101,10 +96,9 @@ class Subsession(BaseSubsession):
             # update groups available remaining by eliminating grouped subjects
             initial_number_players = [value for value in initial_number_players if value not in chosen_group]
 
-        # get list of players to add 1 #####
+        # get list of players to add 1
         list_players = np.array(formed_groups).flatten() + 1
         list_players.tolist()
-        #list_players = list(list_players_temp + 1)
         print("this is list players ", list_players)
 
         matrix_players = []
@@ -116,13 +110,13 @@ class Subsession(BaseSubsession):
             matrix_players.append(temp)
             i += 1
             j += 3
-        if self.treatment == "T1": # endogenous treatment T1
-            print("I'm in treatment T1 @@@@@@@@@@@@@@@@@@")
-            print("this is formed groups", print([l.tolist() for l in matrix_players]))
-            print("this is the matrix of players", self.get_group_matrix())
-            [r.set_group_matrix([l.tolist() for l in matrix_players]) for r in self.in_rounds(2, Constants.num_rounds)]
-            print(" this is the group matrix in round 2 ", self.in_round(2).get_group_matrix())
-            print(" this is the group matrix in round 3 ", self.in_round(3).get_group_matrix())
+#    if self.treatment == "T1": # endogenous treatment T1
+        print("I'm in treatment T1 @@@@@@@@@@@@@@@@@@")
+        print("this is formed groups", print([l.tolist() for l in matrix_players]))
+        print("this is the matrix of players", self.get_group_matrix())
+        [r.set_group_matrix([l.tolist() for l in matrix_players]) for r in self.in_rounds(2, Constants.num_rounds)]
+        print(" this is the group matrix in round 2 ", self.in_round(2).get_group_matrix())
+        print(" this is the group matrix in round 3 ", self.in_round(3).get_group_matrix())
 
     def Exogenous_sortings(self):
         # create list of Player N and RankSum
@@ -155,10 +149,9 @@ class Subsession(BaseSubsession):
 #            print(" this is the group matrix in round 2 ", self.in_round(2).get_group_matrix())
 #            print(" this is the group matrix in round 3 ", self.in_round(3).get_group_matrix())
 
-
-        if self.treatment=="T2": # exogenous T2
+        if self.treatment == "T2": # exogenous T2 à la Gachter and Thoeni
             print("I'm in treatment T2 @@@@@@@@@@@@@@@@@ò")
-            i=1
+            i = 1
             # create list of players with their contributions
             for p in players:
                 rs_temp = [i, p.contribution]
@@ -199,7 +192,7 @@ class Subsession(BaseSubsession):
             print("This is the list ordered (ID, CONTR) ", list_temp_sorted)
             # get IDs ordered
             list_players = list(map(itemgetter(0),list_temp_sorted))
-            # compute thresholds
+            # compute thresholds (to divide groups in 3 classes)
             q = int(int(len(list_players))/3)
             print("this is q : ", q)
             # get players in TOP - MIDDLE - BOTTOM
@@ -211,15 +204,15 @@ class Subsession(BaseSubsession):
             print("THIS IS MID : ", ID_MID)
             print("THIS IS BOT : ", ID_BOT)
 
-            # get randomly 1 from each
-            ## reshuffle
+            # get randomly 1 from each class
+            ## reshuffle first
             ID_TOP_resh = rn.sample(ID_TOP, len(ID_TOP))
             ID_MID_resh = rn.sample(ID_MID, len(ID_MID))
             ID_BOT_resh = rn.sample(ID_BOT, len(ID_BOT))
             print("THIS IS TOP RESH: ", ID_TOP_resh)
             print("THIS IS MID RESH: ", ID_MID_resh)
             print("THIS IS BOT RESH: ", ID_BOT_resh)
-            ## get em
+            ## get 'em
             w = 0
             matrix_players = []
             # create groups
@@ -256,7 +249,6 @@ class Subsession(BaseSubsession):
 
 class Group(BaseGroup):
     total_contribution = models.IntegerField()
-
     individual_share = models.CurrencyField()
 
 
@@ -275,7 +267,7 @@ class Player(BasePlayer):
     )
     list_ID_rank = models.CharField()
     displayed_ID = models.CharField()
-    # add timeouts
+    # add timeouts for important pages
     timeout_ranking = models.IntegerField()
     timeout_contribution = models.IntegerField()
 #    rank_sum = models.IntegerField()
