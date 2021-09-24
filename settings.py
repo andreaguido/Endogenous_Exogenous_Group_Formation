@@ -28,7 +28,7 @@ dict(
 
             """,
         use_browser_bots = False,
-        taux_de_conversion=35
+        taux_de_conversion=20
 
 )
 ]
@@ -42,9 +42,22 @@ REAL_WORLD_CURRENCY_CODE = ''
 USE_POINTS = False
 
 ROOMS = [
-    dict(name='econ101', display_name='EconPsyManagement class', participant_label_file="_room/labels.txt",
-         use_secure_urls = False),
-    dict(name='live_demo', display_name='Room for live demo (no participant labels)'),
+    #dict(name='econ101', display_name='EconPsyManagement class', participant_label_file="_room/labels.txt",
+    #     use_secure_urls = False),
+    #dict(name='live_demo', display_name='Room for live demo (no participant labels)'),
+    dict(name='Angela_SUTAN_class1', display_name='Angela SUTAN Class # 1'),
+    dict(name='Angela_SUTAN_class2', display_name='Angela SUTAN Class # 2'),
+    dict(name='Angela_SUTAN_class3', display_name='Angela SUTAN Class # 3 (extreme case)'),
+    dict(name='Andrea_MART_class1', display_name='Andrea MARTINANGELI Class # 1'),
+    dict(name='Andrea_MART_class2', display_name='Andrea MARTINANGELI Class # 2'),
+    dict(name='Andrea_MART_class3', display_name='Andrea MARTINANGELI Class # 3 (extreme case)'),
+    dict(name='Eli_Sp_class1', display_name='Eli SPIEGELMAN Class # 1'),
+    dict(name='Eli_Sp_class2', display_name='Eli SPIEGELMAN Class # 2'),
+    dict(name='Eli_Sp_class3', display_name='Eli SPIEGELMAN Class # 3 (extreme case)'),
+    dict(name='Andrea_GUIDO_class1', display_name='Andrea GUIDO Class # 1'),
+    dict(name='Andrea_GUIDO_class2', display_name='Andrea GUIDO Class # 2'),
+    dict(name='Andrea_GUIDO_class3', display_name='Andrea GUIDO Class # 3 (extreme case)')
+
 ]
 
 ADMIN_USERNAME = 'admin'
