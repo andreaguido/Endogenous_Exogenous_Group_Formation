@@ -147,7 +147,8 @@ class InfoNewMembers(Page):
 
     def vars_for_template(self):
         otherplayersinfuturegroup = self.player.in_round(2).get_others_in_group()
-        contributionstodisplay = [p.in_round(1).contribution for p in otherplayersinfuturegroup]
+        temp = [p.in_round(1).contribution for p in otherplayersinfuturegroup]
+        contributionstodisplay = random.sample(temp, len(temp))
         return dict(
             #treatment=self.subsession.treatment,
             #otherplayersinfuturegroup=otherplayersinfuturegroup,
@@ -161,10 +162,10 @@ class Results(Page):
     def vars_for_template(self):
         # get contributions and reshuffle them
         temp=[p.contribution for p in self.player.get_others_in_group()]
-        # NO RANDOM DISPLAY contributions_resh=random.sample(temp, len(temp))
+        contributions_resh=random.sample(temp, len(temp))
         return dict(
             total_earnings=self.group.total_contribution * Constants.multiplier,
-            contribution_resh=temp,#contributions_resh,
+            contribution_resh=contributions_resh,
             round=self.subsession.round_number - 1,
             private_ecus=(Constants.endowment - self.player.contribution)
         )
