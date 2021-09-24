@@ -30,6 +30,7 @@ class PlayerBot(Bot):
             yield (pages.Contribute, dict(contribution=rn.randint(0,20)))
             yield (pages.Results)
             if self.round_number == Constants.num_rounds:
+                yield (pages.End_part_2)
                 yield (pages.FinalResults)
 
 #        if case == 'basic':
