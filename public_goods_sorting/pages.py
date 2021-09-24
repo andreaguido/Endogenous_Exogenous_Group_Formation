@@ -197,7 +197,6 @@ class Demographics(Page):
 class FinalResults(Page):
     """final results of the experiment"""
     form_model = 'player'
-    form_fields = ['comments']
     def is_displayed(self):
         return self.subsession.round_number == Constants.num_rounds
 

@@ -280,10 +280,3 @@ class Player(BasePlayer):
     email = models.StringField()
 
     q_triad = models.StringField()
-
-    comments = models.LongStringField(
-        blank=True,
-        max_length=3000,
-
-    )
-
