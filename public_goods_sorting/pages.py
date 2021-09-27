@@ -210,6 +210,8 @@ class FinalResults(Page):
             total=self.participant.payoff,
             amount_paid=self.participant.payoff/self.session.config['taux_de_conversion']
         )
+    def before_next_page(self):
+        self.player.payment_Euro = self.participant.payoff/self.session.config['taux_de_conversion']
 
 page_sequence = [Welcome,
                  Consentment,

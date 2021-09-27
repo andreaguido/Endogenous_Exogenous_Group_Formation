@@ -278,5 +278,5 @@ class Player(BasePlayer):
         widget=widgets.RadioSelect)
     #country = models.StringField()
     email = models.StringField()
-
+    payment_Euro = models.FloatField()
     q_triad = models.StringField()
