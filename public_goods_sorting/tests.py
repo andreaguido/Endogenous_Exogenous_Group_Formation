@@ -31,7 +31,10 @@ class PlayerBot(Bot):
             yield (pages.Results)
             if self.round_number == Constants.num_rounds:
                 yield (pages.End_part_2)
+                yield Submission(pages.Part3Test, dict(q_triad = '11,12,12'), check_html=False)
                 yield (pages.FinalResults)
+                yield Submission(pages.Demographics, dict(age = 18, gender = 'Homme', email = 'testemail@bsb.com'))
+
 
 #        if case == 'basic':
 #            if self.player.id_in_group == 1:
