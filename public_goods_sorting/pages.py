@@ -91,7 +91,7 @@ class Ranking(Page):
 
     def before_next_page(self):
         if self.timeout_happened:
-            list_ID_rank_temp = list(range(1,Constants.num_others_per_group+1))
+            list_ID_rank_temp = list(range(1,len(self.player.get_others_in_subsession())+1))
             self.player.list_ID_rank = ','.join(map(str,list_ID_rank_temp))
             self.player.displayed_ID = self.player.list_ID_rank
             self.player.timeout_ranking = 1
@@ -206,7 +206,7 @@ class FinalResults(Page):
             part_2_payoff=self.participant.payoff - self.player.in_round(1).payoff,
             total_payoff=self.participant.payoff,
             part_1_contribution=self.player.in_round(1).contribution,
-            part_1_total_contribution=self.group.in_round(1).total_contribution,
+            part_1_total_contribution=self.player.in_round(1).Part1totalcontribution,
             total=self.participant.payoff,
             amount_paid=self.participant.payoff/self.session.config['taux_de_conversion']
         )

@@ -259,6 +259,8 @@ class Group(BaseGroup):
         )
         for p in self.get_players():
             p.payoff = (Constants.endowment - p.contribution) + self.individual_share
+            # save Part 1 total contribution for displaying at the end
+            p.Part1totalcontribution = self.total_contribution
 
 
 class Player(BasePlayer):
@@ -280,3 +282,4 @@ class Player(BasePlayer):
     email = models.StringField()
     payment_Euro = models.CurrencyField()
     q_triad = models.StringField()
+    Part1totalcontribution = models.IntegerField()
