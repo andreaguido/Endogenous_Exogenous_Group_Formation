@@ -48,12 +48,16 @@ ROOMS = [
     #dict(name='live_demo', display_name='Room for live demo (no participant labels)'),
     dict(name='Angela_SUTAN_class1', display_name='Angela SUTAN #1-15'),
     dict(name='Angela_SUTAN_class2', display_name='Angela SUTAN Class #16-30'),
+    dict(name='Angela_SUTAN_class3', display_name='Angela SUTAN Class #30+'),
     dict(name='Andrea_MART_class1', display_name='Andrea MARTINANGELI #1-15'),
     dict(name='Andrea_MART_class2', display_name='Andrea MARTINANGELI #16-30'),
+    dict(name='Andrea_MART_class3', display_name='Andrea MARTINANGELI #30+'),
     dict(name='Eli_Sp_class1', display_name='Eli SPIEGELMAN #1-15'),
     dict(name='Eli_Sp_class2', display_name='Eli SPIEGELMAN #16-30'),
+    dict(name='Eli_Sp_class3', display_name='Eli SPIEGELMAN #30+'),
     dict(name='Andrea_GUIDO_class1', display_name='Andrea GUIDO #1-15'),
     dict(name='Andrea_GUIDO_class2', display_name='Andrea GUIDO  #16-30'),
+    dict(name='Andrea_GUIDO_class3', display_name='Andrea GUIDO  #30+'),
 
 ]
 

@@ -46,77 +46,77 @@ class Subsession(BaseSubsession):
 
     def Endogenous_sorting(self):
         # function used in endogenous sorting
-        print("######### IM IN ENDOGENOUS FUNCTION ###########")
-        ## init vars used in this function
-        rankingmatrix = []  # matrix saving everyone's ranking of each other
-        players = self.get_players()  # array of players
-        formed_groups = []  # list including all formed groups
-        i = 0  # indicator for loops
+        if self.treatment == "T1": # endogenous treatment T1
+            print("I'm in treatment T1 @@@@@@@@@@@@@@@@@@")
+            ## init vars used in this function
+            rankingmatrix = []  # matrix saving everyone's ranking of each other
+            players = self.get_players()  # array of players
+            formed_groups = []  # list including all formed groups
+            i = 0  # indicator for loops
 
-        # function to get mutual ranking matrix (See Unel et al. 2005 EJ)
-        for p in players:
-            temp_list_char = p.list_ID_rank  # this is a char. array including the ranking of subject p given in page Ranking.html (passed through JavaScript)
-            temp_displayed_id_char = p.displayed_ID # this is a char. array including the IDs of others players in the session displayed to the subject (page Ranking.html; passed through JavaScript)
-            temp_list = list(int(i) for i in temp_list_char.split(",")) # de-char
-            temp_list_id = list(int(i) for i in temp_displayed_id_char.split(",")) # de-char
-            temp_list_sorted = [x for _, x in sorted(zip(temp_list_id, temp_list))] # here sort temp_list based on temp_list_id
-            temp_list_sorted.insert(i, 0) # add 0 for matrix diagonal
-            print("this is temp list sorted ", temp_list_sorted)
-            rankingmatrix.append(temp_list_sorted) # append values and start over with the next player
-            print("this is the ranking matrix in the process ", rankingmatrix)
-            i += 1
+            # function to get mutual ranking matrix (See Unel et al. 2005 EJ)
+            for p in players:
+                temp_list_char = p.list_ID_rank  # this is a char. array including the ranking of subject p given in page Ranking.html (passed through JavaScript)
+                temp_displayed_id_char = p.displayed_ID # this is a char. array including the IDs of others players in the session displayed to the subject (page Ranking.html; passed through JavaScript)
+                temp_list = list(int(i) for i in temp_list_char.split(",")) # de-char
+                temp_list_id = list(int(i) for i in temp_displayed_id_char.split(",")) # de-char
+                temp_list_sorted = [x for _, x in sorted(zip(temp_list_id, temp_list))] # here sort temp_list based on temp_list_id
+                temp_list_sorted.insert(i, 0) # add 0 for matrix diagonal
+                print("this is temp list sorted ", temp_list_sorted)
+                rankingmatrix.append(temp_list_sorted) # append values and start over with the next player
+                print("this is the ranking matrix in the process ", rankingmatrix)
+                i += 1
 
-        rankingmatrix = np.array(rankingmatrix)  # assign matrix of rankings as np array instead of list for computational reasons (see slicing below)
-        initial_number_players = list(range(0, self.session.num_participants))  # get initial number of player and their ids
-        print("this is the final ranking matrix ", rankingmatrix)
-        print("these are the players available for grouping in the session, ", initial_number_players)
+            rankingmatrix = np.array(rankingmatrix)  # assign matrix of rankings as np array instead of list for computational reasons (see slicing below)
+            initial_number_players = list(range(0, self.session.num_participants))  # get initial number of player and their ids
+            print("this is the final ranking matrix ", rankingmatrix)
+            print("these are the players available for grouping in the session, ", initial_number_players)
 
-        # function to make optimal groups (two loops, j=groups; i=individuals)
-        for j in list(range(1, self.number_of_groups)):
-            comb = combinations(initial_number_players, 3)  # compute combinations
-            rank_sum = []  # init var sum of ranks in a group
+            # function to make optimal groups (two loops, j=groups; i=individuals)
+            for j in list(range(1, self.number_of_groups)):
+                comb = combinations(initial_number_players, 3)  # compute combinations
+                rank_sum = []  # init var sum of ranks in a group
 
-            # function to find min.ranking groups
-            for i in list(comb):
-                idx = np.array(i)  # get index of the row and col as array
-                subset_rankingmatrix = (rankingmatrix[idx[:, None], idx])  # subset matrix using idx
-                rank_sum.append(np.sum(subset_rankingmatrix))  # sum values of the matrix
-            print("this is rank sum of each group ", rank_sum)
+                # function to find min.ranking groups
+                for i in list(comb):
+                    idx = np.array(i)  # get index of the row and col as array
+                    subset_rankingmatrix = (rankingmatrix[idx[:, None], idx])  # subset matrix using idx
+                    rank_sum.append(np.sum(subset_rankingmatrix))  # sum values of the matrix
+                print("this is rank sum of each group ", rank_sum)
 
-            # find group with min ranking (randomly solve ties)
-            ## find minimum ranking sum
-            min_group = rn.sample([i for i, x in enumerate(rank_sum) if x == min(rank_sum)], 1)
-            ## save group composition
-            comb2 = combinations(initial_number_players, 3) ## note: don't know why can't use comb, but i needed to re-create similar variable
-            chosen_group = [i for i in comb2][min_group[0]]
-            print("Min group is", min_group, "that is ", chosen_group)
-            # store group list
-            formed_groups.append(chosen_group)
+                # find group with min ranking (randomly solve ties)
+                ## find minimum ranking sum
+                min_group = rn.sample([i for i, x in enumerate(rank_sum) if x == min(rank_sum)], 1)
+                ## save group composition
+                comb2 = combinations(initial_number_players, 3) ## note: don't know why can't use comb, but i needed to re-create similar variable
+                chosen_group = [i for i in comb2][min_group[0]]
+                print("Min group is", min_group, "that is ", chosen_group)
+                # store group list
+                formed_groups.append(chosen_group)
 
-            # update groups available remaining by eliminating grouped subjects
-            initial_number_players = [value for value in initial_number_players if value not in chosen_group]
+                # update groups available remaining by eliminating grouped subjects
+                initial_number_players = [value for value in initial_number_players if value not in chosen_group]
 
-        # get list of players to add 1
-        list_players = np.array(formed_groups).flatten() + 1
-        list_players.tolist()
-        print("this is list players ", list_players)
+            # get list of players to add 1
+            list_players = np.array(formed_groups).flatten() + 1
+            list_players.tolist()
+            print("this is list players ", list_players)
 
-        matrix_players = []
-        i = 0
-        j = 0
-        while i < (int(len(list_players) / 3)):  # groups of 3
-            temp = list_players[j:(j + 3)]
-            print("this is temp ", temp)
-            matrix_players.append(temp)
-            i += 1
-            j += 3
-#    if self.treatment == "T1": # endogenous treatment T1
-        print("I'm in treatment T1 @@@@@@@@@@@@@@@@@@")
-        print("this is formed groups", print([l.tolist() for l in matrix_players]))
-        print("this is the matrix of players", self.get_group_matrix())
-        [r.set_group_matrix([l.tolist() for l in matrix_players]) for r in self.in_rounds(2, Constants.num_rounds)]
-        print(" this is the group matrix in round 2 ", self.in_round(2).get_group_matrix())
-        print(" this is the group matrix in round 3 ", self.in_round(3).get_group_matrix())
+            matrix_players = []
+            i = 0
+            j = 0
+            while i < (int(len(list_players) / 3)):  # groups of 3
+                temp = list_players[j:(j + 3)]
+                print("this is temp ", temp)
+                matrix_players.append(temp)
+                i += 1
+                j += 3
+
+            print("this is formed groups", print([l.tolist() for l in matrix_players]))
+            print("this is the matrix of players", self.get_group_matrix())
+            [r.set_group_matrix([l.tolist() for l in matrix_players]) for r in self.in_rounds(2, Constants.num_rounds)]
+            print(" this is the group matrix in round 2 ", self.in_round(2).get_group_matrix())
+            print(" this is the group matrix in round 3 ", self.in_round(3).get_group_matrix())
 
     def Exogenous_sortings(self):
         # create list of Player N and RankSum
@@ -259,8 +259,9 @@ class Group(BaseGroup):
         )
         for p in self.get_players():
             p.payoff = (Constants.endowment - p.contribution) + self.individual_share
-            # save Part 1 total contribution for displaying at the end
-            p.Part1totalcontribution = self.total_contribution
+            if self.subsession.round_number == 1:
+                # save Part 1 total contribution for displaying at the end
+                p.Part1totalcontribution = self.total_contribution
 
 
 class Player(BasePlayer):
